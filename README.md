@@ -1,30 +1,18 @@
-# SolidStart
+# Daniel Griffiths
+This is the web profile for Daniel Griffiths
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+### Application Layer Stack
+- Typescript
+- Vue 3
 
-## Creating a project
+### Operations Stack
+- AWS
+- CI/CD with GitHub Actions
 
-```bash
-# create a new project in the current directory
-npm init solid@latest
+### Initialization
+- `pnpm i`
+- `pnpm serve`
 
-# create a new project in my-app
-npm init solid@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.
+### Deploy
+- `docker build -t who-am-i .`
+- `docker run --name who-am-i -dp 127.0.0.1:8080:8080 who-am-i`
