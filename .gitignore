@@ -1,15 +1,15 @@
 
 dist
-app/dist
+_app_/dist
 
 # Environment
 .env
 .env*.local
-app/.env
-app/.env*.local
+_app_/.env
+_app_/.env*.local
 
 # dependencies
-app/node_modules
+_app_/node_modules
 
 # IDEs and editors
 /.idea
