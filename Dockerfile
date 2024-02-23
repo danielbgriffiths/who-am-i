@@ -1,9 +1,16 @@
 # syntax=docker/dockerfile:1
 
 FROM node:21-alpine
+
 RUN npm install -g pnpm
+
 WORKDIR ./app
-COPY _app_ .
+COPY app .
+
 RUN pnpm install
-CMD ["pnpm", "serve"]
-EXPOSE 8080
+RUN pnpm build
+
+EXPOSE 3000
+
+CMD ["node", ".output/server/index.mjs"]
+
