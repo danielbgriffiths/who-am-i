@@ -10,33 +10,33 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
         with:
-          node-version: 21
+          fetch-depth: 0
 
       - uses: pnpm/action-setup@v3
         name: Configure pnpm
         with:
           version: 6.30.1
-          run_install: |
-            - recursive: true
-              args: [--frozen-lockfile, --strict-peer-dependencies]
-            - args: [--global, prettier, typescript]
 
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          node-version: 21
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+#      - name: Get pnpm store directory
+#        shell: bash
+#        run: |
+#          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+#
+#      - uses: actions/cache@v4
+#        name: Setup pnpm cache
+#        with:
+#          path: ${{ env.STORE_PATH }}
+#          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+#          restore-keys: |
+#            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install
