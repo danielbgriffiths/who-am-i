@@ -10,6 +10,8 @@ env:
   ECS_CLUSTER: who-am-i
   ECS_TASK_DEFINITION: ../../.aws/task-definition.json
   CONTAINER_NAME: who-am-i
+  ROLE_TO_ASSUME: arn:aws:iam::381492151940:role/who-am-i
+  ROLE_SESSION_NAME: who_am_i
 
 permissions:
   id-token: write
@@ -28,32 +30,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          # AssumeRole with static IAM credentials in repository secrets
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-east-2
-#          role-to-assume: arn:aws:iam::381492151940:role/who-am-i
-#          role-duration-seconds: 1200
-#          role-session-name: who-am-i-role-session
-
-          # Assume role and call aws
-          role-to-assume: arn:aws:iam::381492151940:role/who-am-i
-          role-session-name: who_am_i
-          aws-region: us-east-2
-
-#          role-skip-session-tagging: true
-#          managed-session-policies: arn:aws:iam::aws:policy/AdministratorAccess
-#          unset-current-credentials: true
-#          audience: sts.amazonaws.com.cn
-#          aws-region: us-east-3
-#          role-to-assume: arn:aws:iam::381492151940:role/who-am-i
-
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-east-2
-#          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-#          role-session-name: who-am-i-role-session
+          role-to-assume: ${{ env.$ROLE_TO_ASSUME }}
+          role-session-name: ${{ env.$ROLE_SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -67,7 +46,7 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
