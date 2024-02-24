@@ -20,7 +20,10 @@ jobs:
         name: Configure pnpm
         with:
           version: 6.30.1
-          run_install: true
+          run_install: |
+            - recursive: true
+              args: [--frozen-lockfile, --strict-peer-dependencies]
+            - args: [--global, prettier, typescript]
 
       - name: Get pnpm store directory
         shell: bash
