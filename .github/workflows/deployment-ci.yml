@@ -28,11 +28,27 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          # AssumeRole with static IAM credentials in repository secrets
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-duration-seconds: 1200
           role-session-name: who-am-i-role-session
+
+#          role-skip-session-tagging: true
+#          managed-session-policies: arn:aws:iam::aws:policy/AdministratorAccess
+#          unset-current-credentials: true
+#          audience: sts.amazonaws.com.cn
+#          aws-region: us-east-3
+#          role-to-assume: arn:aws:iam::381492151940:role/who-am-i
+
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: us-east-2
+#          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+#          role-session-name: who-am-i-role-session
 
       - name: Login to Amazon ECR
         id: login-ecr
