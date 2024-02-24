@@ -1,0 +1,19 @@
+name: Validation CI
+
+on: [pull_request]
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validation CI
+        uses: actions/setup-node@v1
+        with:
+          node-version: '21'
+      - run: pnpm install
+      - run: pnpm format
+      - run: pnpm lint
+      - run: pnpm test
+      - run: pnpm cleanup
+      - run: pnpm build

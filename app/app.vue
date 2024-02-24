@@ -4,9 +4,8 @@
   </div>
 </template>
 
-<script setup>
-console.log('test')
+<script setup lang="ts">
+console.log("test");
 </script>
 
-<style>
-</style>
+<style></style>
