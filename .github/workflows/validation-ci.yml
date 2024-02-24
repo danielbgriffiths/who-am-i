@@ -39,10 +39,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm run install
+        run: pnpm --filter app... install
 
       - name: Run validations
-        run: pnpm run app:build
+        run: pnpm --filter app... app:build
 
       - name: Validation ✅
         if: ${{ success() }}
