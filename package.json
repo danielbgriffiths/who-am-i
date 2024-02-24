@@ -5,8 +5,10 @@
   "scripts": {
     "docker:build": "docker build -t who-am-i .",
     "docker:run": "docker run -p 3000:3000 who-am-i",
-    "action:validation": "pnpm -C ./app run format && pnpm -C ./app run lint && pnpm -C ./app run test && pnpm -C ./app run cleanup && pnpm -C ./app run build",
-    "run:dev": "pnpm -C ./app run dev"
+    "app:install": "pnpm -C ./app install",
+    "app:build": "pnpm -C ./app run format && pnpm -C ./app run lint && pnpm -C ./app run test && pnpm -C ./app run cleanup && pnpm -C ./app run build",
+    "app:serve": "node ./app/.output/server/index.mjs",
+    "app:dev": "pnpm -C ./app run dev"
   },
   "repository": {
     "type": "git",
