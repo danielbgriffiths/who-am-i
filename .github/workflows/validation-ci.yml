@@ -6,20 +6,52 @@ on:
 jobs:
   validation:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Validation CI
-        uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '21'
-      - run: npm install -g pnpm
-      - run: npx pnpm install --global pnpm
-      - run: pnpm install
-      - run: pnpm format
-      - run: pnpm lint
-      - run: pnpm test
-      - run: pnpm cleanup
-      - run: pnpm build
+          node-version: 21
+
+      - uses: pnpm/action-setup@v3
+        name: Configure pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Format directories
+        run: pnpm format
+
+      - name: Lint syntax
+        run: pnpm lint
+
+      - name: Test files
+        run: pnpm test
+
+      - name: Cleanup nuxt
+        run: pnpm cleanup
+
+      - name: Build nuxt
+        run: pnpm build
 
       - name: Validation ✅
         if: ${{ success() }}
