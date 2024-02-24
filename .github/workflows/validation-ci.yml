@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm --filter app... install
+        run: pnpm --filter app... install --no-frozen-lockfile
 
       - name: Run validations
         run: pnpm --filter app... action:validation
