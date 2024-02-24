@@ -1,0 +1,21 @@
+{
+  "name": "who-am-i",
+  "version": "1.0.0",
+  "description": "Profile website package manager",
+  "scripts": {
+    "docker:build": "docker build -t who-am-i .",
+    "docker:run": "docker run -p 3000:3000 who-am-i",
+    "action:validation": "pnpm -C ./app run format && pnpm -C ./app run lint && pnpm -C ./app run test && pnpm -C ./app run cleanup && pnpm -C ./app run build",
+    "run:dev": "pnpm -C ./app run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielbgriffiths/who-am-i.git"
+  },
+  "author": "Daniel Griffiths",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielbgriffiths/who-am-i/issues"
+  },
+  "homepage": "https://github.com/danielbgriffiths/who-am-i#readme"
+}

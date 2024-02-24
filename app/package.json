@@ -1,7 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "app",
   "type": "module",
-  "private": true,
   "scripts": {
     "build": "nuxt build",
     "cleanup": "nuxt cleanup",
