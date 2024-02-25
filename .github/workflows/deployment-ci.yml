@@ -5,10 +5,6 @@ on:
 
 env:
   ECR_REPOSITORY: who-am-i
-  ECS_SERVICE: who-am-i
-  ECS_CLUSTER: who-am-i
-  ECS_TASK_DEFINITION: .aws/task-definition.json
-  CONTAINER_NAME: who-am-i
 
 permissions:
   id-token: write
