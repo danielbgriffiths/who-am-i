@@ -3,14 +3,16 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "start": "nuxt start",
     "cleanup": "nuxt cleanup",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port 80",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest run --pool=forks",
     "lint": "eslint --ext .ts,.js,.vue .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prod": "pnpm build && pnpm start"
   },
   "dependencies": {
     "nuxt": "^3.10.2",

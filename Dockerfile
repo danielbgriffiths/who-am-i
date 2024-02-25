@@ -8,9 +8,10 @@ WORKDIR ./app
 COPY app .
 
 RUN pnpm install
+RUN pnpm cleanup
 RUN pnpm build
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD ["node", ".output/server/index.mjs"]
+CMD ["pnpm", "start"]
 

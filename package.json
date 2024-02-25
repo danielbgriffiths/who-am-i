@@ -4,7 +4,7 @@
   "description": "Profile website package manager",
   "scripts": {
     "docker:build": "docker build -t who-am-i .",
-    "docker:run": "docker run -p 3000:3000 who-am-i",
+    "docker:run": "docker run -p 80:80 who-am-i",
     "app:install": "pnpm -C ./app install",
     "app:build": "pnpm -C ./app run format && pnpm -C ./app run lint && pnpm -C ./app run test && pnpm -C ./app run cleanup && pnpm -C ./app run build",
     "app:serve": "node ./app/.output/server/index.mjs",
