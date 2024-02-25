@@ -4,14 +4,11 @@ on:
   workflow_call:
 
 env:
-  AWS_REGION: us-east-2
   ECR_REPOSITORY: who-am-i
   ECS_SERVICE: who-am-i
   ECS_CLUSTER: who-am-i
   ECS_TASK_DEFINITION: ../../.aws/task-definition.json
   CONTAINER_NAME: who-am-i
-  ROLE_TO_ASSUME: arn:aws:iam::381492151940:role/who-am-i
-  ROLE_SESSION_NAME: who_am_i
 
 permissions:
   id-token: write
@@ -30,9 +27,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ env.$ROLE_TO_ASSUME }}
-          role-session-name: ${{ env.$ROLE_SESSION_NAME }}
-          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: arn:aws:iam::381492151940:role/who-am-i
+          role-session-name: who_am_i
+          aws-region: us-east-2
 
       - name: Login to Amazon ECR
         id: login-ecr
