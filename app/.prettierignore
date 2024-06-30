@@ -1,7 +1,0 @@
-pnpm-lock.yaml
-.gitignore
-README.md
-node_modules/
-package.json
-.nuxt/
-public/
