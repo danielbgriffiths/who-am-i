@@ -73,7 +73,7 @@ export default function About() {
             <p>
               I’ve loved making things for as long as I can remember.
               The house I grew up in was an artistic one, primarily,
-              but in hindsight on the second order I was surrounded by mathematicians and engineers (I just didn't notice it).
+              but in hindsight on the second order I was surrounded by mathematicians and engineers (I just didn`&apos;t notice it).
               I started playing classical piano at 3 and participated in all of the competitions and performances any young musician does.
             </p>
             <p>
@@ -84,20 +84,20 @@ export default function About() {
             <p>
               I eventually decided to spread my eggs around some other baskets, metaphorically.
               I had never deeply focused on anything aside from classical music,
-              in fact, I didn't even own a computer at the time. Nonetheless, I began learning software.
+              in fact, I didn`&apos;t even own a computer at the time. Nonetheless, I began learning software.
             </p>
             <p>
               The puzzle-y nature of code, and the structure, were two familiar elements I
               could rely on enjoying even when the learning curve felt steep.
             </p>
             <p>
-              A few years later and I'm a senior software engineer at a wonderful company with elite peers and I have a deepening understanding of the academic perspective of software in addition to extensive professional experience.
-              There is a new fold in my learning; a B.S. in Mathematics I'm currently pursuing.
+              A few years later and I`&apos;m a senior software engineer at a wonderful company with elite peers and I have a deepening understanding of the academic perspective of software in addition to extensive professional experience.
+              There is a new fold in my learning; a B.S. in Mathematics I`&apos;m currently pursuing.
               These my days look a lot like coding at work and for pleasure, studying math, and relaxing while learning a new Scriabin etude or Rachmaninoff Sonata.
             </p>
             <p>
               When I was managing my repetitive stress injury, with all my eggs in the piano-bucket, there were very few obvious and appealing futures.
-              That isn't the case now and all the credit goes to starting from zero, and learning. And then doing it again.
+              That isn`&apos;t the case now and all the credit goes to starting from zero, and learning. And then doing it again.
             </p>
           </div>
         </div>

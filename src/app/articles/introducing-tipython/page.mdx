@@ -1,0 +1,295 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Daniel Griffiths',
+  date: '2024-07-01',
+  title: 'Introducing TIPython | The TI-84 Plus CE Python App Repository',
+  description:
+    'The TI-84 Plus CE Python is a powerful graphing calculator that can run Python code. There is no sufficient repository of Python applications for the calculator, until now...',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+[tipython.com](https://www.tipython.com/)
+
+## TIPython: Your New Resource for Python Scripts on the TI-84 Plus CE
+
+I am excited to introduce a new resource for students, educators, and enthusiasts alike: [TIPython](http://tipython.com). TIPython is a comprehensive repository of downloadable Python scripts tailored specifically for the TI-84 Plus CE Python calculator.
+
+### What You'll Find on TIPython
+
+The site currently features a variety of scripts for:
+
+- **Precalculus**: Essential tools to help with everything from functions to sequences and series.
+- **Calculus**: A range of applications covering limits, derivatives, integrals, and more.
+- **Trigonometry**: Scripts designed to handle trigonometric functions, identities, and equations.
+
+Each script is carefully crafted to be both educational and practical, providing users with the tools they need to excel in their studies and beyond. Here is an example of what one of our trigonometry scripts looks like:
+
+```python
+# /trigonometry/law_of_cosines/download.py
+
+from common.helpers import get_float_input
+from trigonometry.law_of_cosines.script import law_of_cosines
+
+print(
+    law_of_cosines(
+        get_float_input("Enter side A: "),
+        get_float_input("Enter side B: "),
+        get_float_input("Enter angle C (in degrees): ")
+    )
+)
+
+
+# /trigonometry/law_of_cosines/script.py
+
+from common.helpers import cos
+from trigonometry.degrees_to_radians.download import degrees_to_radians
+
+def law_of_cosines(side_a, side_b, angle_c):
+    side_a_squared = side_a**2
+    side_b_squared = side_b**2
+    angle_c_radians = degrees_to_radians(angle_c)
+    return side_a_squared + side_b_squared - 2*side_a*side_b*cos(angle_c_radians)
+
+
+# /trigonometry/law_of_cosines/test.py
+
+import unittest
+from trigonometry.law_of_cosines.script import law_of_cosines
+
+class TestLawOfCosines(unittest.TestCase):
+    def test_right_angle(self):
+        self.assertAlmostEqual(law_of_cosines(3, 4, 90), 25)
+    def test_acute_angle(self):
+        self.assertAlmostEqual(law_of_cosines(5, 7, 45), 16.019237886466847)
+    def test_obtuse_angle(self):
+        self.assertAlmostEqual(law_of_cosines(8, 15, 120), 373.8001227787525)
+    def test_zero_angle(self):
+        self.assertAlmostEqual(law_of_cosines(3, 4, 0), 1)
+    def test_same_side_lengths(self):
+        self.assertAlmostEqual(law_of_cosines(5, 5, 60), 25)
+    def test_negative_angle(self):
+        self.assertAlmostEqual(law_of_cosines(3, 4, -90), 25)
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+> As you can see each script is held within it's own directory. In each directory are the following files:
+> - `download.py` - This is the source file from which the Rust compiler* will create a single file for download.
+> - `script.py` - This is the main script file that contains the functionality of the script.
+> - `test.py` - This is the test file that contains unit tests for the script.
+> - `README.md` - This file contains a description of the script and how to use it. It is fetched and displayed on the scripts informational page on the website.
+>
+> There is one additional set of files that pertain to each script but are not shown here. These are the files in `common/` which contain helper functions that are used across multiple scripts.
+
+### Our Vision
+
+[TIPython](https://tipython.com) is designed to be a continually growing resource. As the community of users and contributors expands, so will the library of scripts. Each script is available for individual download or as part of bundled packages, ensuring you have the tools you need for your mathematical journey.
+
+The project consists of three main components:
+
+1. **Python Repository of Applications**: A growing collection of Python scripts that users can download and run on their TI-84 Plus CE calculators.
+2. **NuxtJS Website**: A modern, user-friendly website that hosts the repository and provides an easy interface for downloading scripts and learning about their functionality.
+3. **Rust Compiler**: While using the term compiler *very* loosely, it is a Rust tool that parses Python imports to create a single file for download of a given script. This ensures that each script is self-contained and easy to transfer to the calculator.
+
+### The Python Repository
+
+The heart of [TIPython](https://tipython.com) is the repository of Python scripts. These scripts cover a wide range of topics and are designed to be both educational and practical. Whether you're working on a complex calculus problem or need a quick tool for a trigonometry equation, [TIPython](https://tipython.com) has you covered.
+
+-----
+
+Here's a snippet from one of our precalculus scripts compiled into a single file at the time of download by the Rust tool:
+
+> There are two layers of diffs in this compilation. We will look at the deepest layer first, in the `script.py` file.python
+
+```diff
+- from common.helpers import NO_REAL_SOLUTIONS, sqrt
++ NO_REAL_SOLUTIONS = "No real solutions."
++
++ # Babylonian Method
++ def sqrt(n, tolerance=1e-10):
++     if n < 0:
++         raise ValueError("Cannot compute the square root of a negative number")
++     if n == 0:
++         return 0
++
++     x = n / 2
++     while True:
++         next_x = 0.5 * (x + n / x)
++         if abs(x - next_x) < tolerance:
++             return next_x
++         x = next_x
+
+def quadratic_equation(a, b, c):
+    discriminant = b ** 2 - 4 * a * c
+
+    if discriminant > 0:
+        root1 = (-b + sqrt(discriminant)) / (2 * a)
+        root2 = (-b - sqrt(discriminant)) / (2 * a)
+        return root1, root2
+    elif discriminant == 0:
+        root = -b / (2 * a)
+        return root
+    else:
+        return NO_REAL_SOLUTIONS
+```
+
+> Next, with this in consideration, we will look at the `download.py` file.
+
+```diff
+- from common.helpers import get_float_input
++ def get_float_input(prompt):
++    while True:
++        try:
++            return float(input(prompt))
++        except ValueError:
++            print("Invalid input. Please enter a number.")
+
+- from pre_calculus.quadratic_equation.script import quadratic_equation
++ NO_REAL_SOLUTIONS = "No real solutions."
++
++ # Babylonian Method
++ def sqrt(n, tolerance=1e-10):
++     if n < 0:
++         raise ValueError("Cannot compute the square root of a negative number")
++     if n == 0:
++         return 0
++
++     x = n / 2
++     while True:
++         next_x = 0.5 * (x + n / x)
++         if abs(x - next_x) < tolerance:
++             return next_x
++         x = next_x
++
++ def quadratic_equation(a, b, c):
++     discriminant = b ** 2 - 4 * a * c
++
++     if discriminant > 0:
++         root1 = (-b + sqrt(discriminant)) / (2 * a)
++         root2 = (-b - sqrt(discriminant)) / (2 * a)
++         return root1, root2
++     elif discriminant == 0:
++         root = -b / (2 * a)
++         return root
++     else:
++         return NO_REAL_SOLUTIONS
+
+print(
+    quadratic_equation(
+        get_float_input("Enter coefficient a: "),
+        get_float_input("Enter coefficient b: "),
+        get_float_input("Enter coefficient c: ")
+    )
+)
+```
+
+> And now, the finished result without diff indicators
+
+```python
+def get_float_input(prompt):
+   while True:
+       try:
+           return float(input(prompt))
+       except ValueError:
+           print("Invalid input. Please enter a number.")
+
+NO_REAL_SOLUTIONS = "No real solutions."
+
+# Babylonian Method
+def sqrt(n, tolerance=1e-10):
+    if n < 0:
+        raise ValueError("Cannot compute the square root of a negative number")
+    if n == 0:
+        return 0
+
+    x = n / 2
+    while True:
+        next_x = 0.5 * (x + n / x)
+        if abs(x - next_x) < tolerance:
+            return next_x
+        x = next_x
+
+def quadratic_equation(a, b, c):
+    discriminant = b ** 2 - 4 * a * c
+
+    if discriminant > 0:
+        root1 = (-b + sqrt(discriminant)) / (2 * a)
+        root2 = (-b - sqrt(discriminant)) / (2 * a)
+        return root1, root2
+    elif discriminant == 0:
+        root = -b / (2 * a)
+        return root
+    else:
+        return NO_REAL_SOLUTIONS
+
+print(
+    quadratic_equation(
+        get_float_input("Enter coefficient a: "),
+        get_float_input("Enter coefficient b: "),
+        get_float_input("Enter coefficient c: ")
+    )
+)
+```
+
+### The NuxtJS Website
+
+The TIPython website, built with NuxtJS, offers a seamless and interactive experience. Users can browse through the available scripts, read detailed descriptions, and download the ones they need. The website is designed to be intuitive and accessible, ensuring that users of all levels can navigate and find the resources they need.
+
+### The Rust Compiler
+
+One of the unique features of [TIPython](https://tipython.com) is the Rust tool that acts as a compiler for the Python scripts. This tool parses the Python imports in a project and creates a singular file for download. This ensures that each script is self-contained, making it easy to transfer and run on the TI-84 Plus CE calculator.
+
+##### Why not just create single-file Python scripts from the begining?
+
+The Rust tool allows for the scripts to be written in a more modular way. This makes it easier to maintain and test the scripts. The hope is that over time this will lead to a significantly more robust, testable and reliable set of scripts. Not to mention more engaging to develop.
+
+I see one of the main drawbacks of the TI-84 Plus CE Python calculator as the lack of this kind of infrastructure. This tool is a step towards creating a more package-like experience for the calculator.
+
+It's possible, with a few known-rules about file naming and location, to create a very simple process to handle the task.
+
+The flow of the Rust tool is simple:
+
+```rust
+fn main() {
+    dotenv().ok();
+
+    let args = gather_args();
+
+    let mut files = Vec::new();
+
+    for script_name in args[2].split(',').map(|s| s.trim()) {
+        let paths = describe_paths(&args[1], &script_name.to_string());
+
+        let bundled_output_lines: Vec<String> = build_bundle(&paths);
+
+        files.push(FileObject {
+            script_name: script_name.to_string(),
+            contents: bundled_output_lines,
+        })
+    }
+
+    let zip_content = create_zip(files);
+
+    println!("{}", general_purpose::STANDARD.encode(&zip_content));
+}
+```
+
+### Join the Community
+
+Whether you're a student looking for tools to aid in your studies, an educator seeking resources for your classroom, or a developer interested in contributing your own scripts, TIPython welcomes you. Visit [TIPython](https://tipython.com) today and explore the growing collection of Python scripts designed to enhance the functionality of your TI-84 Plus CE calculator.
+
+---
+
+Stay tuned for more updates as we continue to expand and improve TIPython. Your feedback and contributions are invaluable as we build this resource together.
+
+Happy calculating!
+
+Daniel Griffiths
