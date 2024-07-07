@@ -6,11 +6,9 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import {
   GitHubIcon,
-  InstagramIcon,
   LinkedInIcon,
-  XIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import avatarImage from '@/images/avatar.jpg'
 
 function SocialLink({
   className,
@@ -50,7 +48,7 @@ function MailIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'I’m Spencer Sharp. I live in New York City, where I design the future.',
+    'Daniel Griffiths - Senior software engineer, student of mathematics, and classical pianist.',
 }
 
 export default function About() {
@@ -60,7 +58,7 @@ export default function About() {
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
-              src={portraitImage}
+              src={avatarImage}
               alt=""
               sizes="(min-width: 1024px) 32rem, 20rem"
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
@@ -69,58 +67,54 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I’m Spencer Sharp. I live in New York City, where I design the
-            future.
+            I’m Daniel Griffiths. I live in NC, where I write code and make music.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+              I’ve loved making things for as long as I can remember.
+              The house I grew up in was an artistic one, primarily,
+              but in hindsight on the second order I was surrounded by mathematicians and engineers (I just didn't notice it).
+              I started playing classical piano at 3 and participated in all of the competitions and performances any young musician does.
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+              When I was 15 I left home to study with Eric Larsen at the North Carolina School of the Arts where I was a finalist in international competitions
+              like the Arthur Fraser International Concerto Competition; it is where I stayed until my time with Barbara Lister-Sink
+              where we focused on rehabilitating a repetitive stress injury I sustained during my freshman year of college.
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
+              I eventually decided to spread my eggs around some other baskets, metaphorically.
+              I had never deeply focused on anything aside from classical music,
+              in fact, I didn't even own a computer at the time. Nonetheless, I began learning software.
             </p>
             <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+              The puzzle-y nature of code, and the structure, were two familiar elements I
+              could rely on enjoying even when the learning curve felt steep.
+            </p>
+            <p>
+              A few years later and I'm a senior software engineer at a wonderful company with elite peers and I have a deepening understanding of the academic perspective of software in addition to extensive professional experience.
+              There is a new fold in my learning; a B.S. in Mathematics I'm currently pursuing.
+              These my days look a lot like coding at work and for pleasure, studying math, and relaxing while learning a new Scriabin etude or Rachmaninoff Sonata.
+            </p>
+            <p>
+              When I was managing my repetitive stress injury, with all my eggs in the piano-bucket, there were very few obvious and appealing futures.
+              That isn't the case now and all the credit goes to starting from zero, and learning. And then doing it again.
             </p>
           </div>
         </div>
         <div className="lg:pl-20">
           <ul role="list">
-            <SocialLink href="#" icon={XIcon}>
-              Follow on X
-            </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink href="#" icon={GitHubIcon} className="mt-4">
+            <SocialLink href="https://github.com/danielbgriffiths" icon={GitHubIcon} className="mt-4">
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="#" icon={LinkedInIcon} className="mt-4">
+            <SocialLink href="https://www.linkedin.com/in/danielgriffiths1182/" icon={LinkedInIcon} className="mt-4">
               Follow on LinkedIn
             </SocialLink>
             <SocialLink
-              href="mailto:spencer@planetaria.tech"
+              href="mailto:danielbgriffiths@protonmail.com"
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              spencer@planetaria.tech
+              danielbgriffiths@protonmail.com
             </SocialLink>
           </ul>
         </div>
