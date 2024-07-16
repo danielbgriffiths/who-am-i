@@ -71,33 +71,33 @@ export default function About() {
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember.
-              The house I grew up in was an artistic one, primarily,
-              but in hindsight on the second order I was surrounded by mathematicians and engineers (I just didn`&apos;t notice it).
-              I started playing classical piano at 3 and participated in all of the competitions and performances any young musician does.
+              I’ve loved creating things for as long as I can remember.
+              I always perceived the house I grew up in as dominated by the arts,
+              but, in retrospect I was surrounded by more mathematicians and engineers than I realized.
+              I started playing classical piano at three and participated in all of the competitions and performances any young musician does.
             </p>
             <p>
               When I was 15 I left home to study with Eric Larsen at the North Carolina School of the Arts where I was a finalist in international competitions
-              like the Arthur Fraser International Concerto Competition; it is where I stayed until my time with Barbara Lister-Sink
+              like the Arthur Fraser International Concerto Competition. I stayed with Eric Larsen until my time with Barbara Lister-Sink
               where we focused on rehabilitating a repetitive stress injury I sustained during my freshman year of college.
             </p>
             <p>
-              I eventually decided to spread my eggs around some other baskets, metaphorically.
+              After multiple years of physical rehabilitation I decided to make a pragmatic career decision.
               I had never deeply focused on anything aside from classical music,
-              in fact, I didn`&apos;t even own a computer at the time. Nonetheless, I began learning software.
+              in fact, I didn&apos;t even own a computer at the time. Nevertheless, I began learning software.
             </p>
             <p>
-              The puzzle-y nature of code, and the structure, were two familiar elements I
-              could rely on enjoying even when the learning curve felt steep.
+              The puzzle-y nature of code and the structure were two familiar elements I
+              could rely upon even when the learning curve felt steep. When you become multidisciplinary you see a growing number of parallels in seemingly distinct domains.
             </p>
             <p>
-              A few years later and I`&apos;m a senior software engineer at a wonderful company with elite peers and I have a deepening understanding of the academic perspective of software in addition to extensive professional experience.
-              There is a new fold in my learning; a B.S. in Mathematics I`&apos;m currently pursuing.
+              Now I&apos;m a senior software engineer at a wonderful company with elite peers and I have a deepening understanding of the academic perspective of software in addition to extensive professional experience.
+              There is a new fold in my learning; a B.S. in Mathematics I&apos;m currently pursuing.
               These my days look a lot like coding at work and for pleasure, studying math, and relaxing while learning a new Scriabin etude or Rachmaninoff Sonata.
             </p>
             <p>
-              When I was managing my repetitive stress injury, with all my eggs in the piano-bucket, there were very few obvious and appealing futures.
-              That isn`&apos;t the case now and all the credit goes to starting from zero, and learning. And then doing it again.
+              When I was managing my repetitive stress injury, with all my eggs in the piano bucket, there were very few clear and appealing futures.
+              That isn&apos;t the case now and all the credit goes to starting from zero, and learning. And then doing it again.
             </p>
           </div>
         </div>
